@@ -1,57 +1,56 @@
 <!doctype html>
 <html>
   <head>
-    <title>일요일에 같이 영화볼래??</title>
+    <title>커뮤니티 웹 사이트</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- 부트스트랩 CSS 추가하기 -->
     <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/sidebar.css">
+    <link rel="stylesheet" href="./css/custom.css">
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="row d-flex d-md-block flex-nowrap wrapper">
-        <nav class="col-md-3 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
-          <div class="list-group border-0 card text-center text-md-left">
-            <a href="./index.html" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">
-              <img style="width: 20px;" src="./img/home.svg"><span class="d-none d-md-inline ml-1">메인</span>
-            </a>
-            <a href="#usermenu" class="list-group-item d-inline-block collapsed" data-toggle="collapse"
-             data-parent="#sidebar" aria-expanded="false">
-              <img style="width: 20px;" src="./img/user.svg"><span class="d-none d-md-inline ml-1">회원 관리</span>
-            </a>
-            <div class="collapse" id="usermenu">
-              <a href="userJoin.html" class="list-group-item" data-parent="#sidebar">회원정보</a>
-              <a href="userLogin.html" class="list-group-item" data-parent="#sidebar">방문현황</a>
-            </div>
-            <a href="board.html" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">
-              <img style="width: 20px;" src="./img/board.svg"><span class="d-none d-md-inline ml-1">모임 안내</span>
-            </a>
-            <a href="qna.html" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">
-              <img style="width: 20px;" src="./img/message.svg"><span class="d-none d-md-inline ml-1">Q & A</span>
-            </a>
-            <!--<a href="#search" class="list-group-item d-inline-block collapsed" data-toggle="collapse"
-             data-parent="#sidebar" aria-expanded="false">
-              <img style="width: 20px;" src="./img/search.svg"><span class="d-none d-md-inline ml-1">검색</span>
-            </a>
-            <div class="collapse" id="search">
-              <div class="input-group p-2" style="background-color: #1c1c1c;">
-                <input type="text" class="form-control" placeholder="내용을 입력하세요.">
-              </div>
-            </div>
-          -->
-          </div>
-        </nav>
-        <main id="main" class="col-md-9 float-left col pl-md-5 pt-3 main">
-          <div class="page-header mt-3">
-              <h2>로그아웃</h2>
-          </div>
-          <p class="lead">로그아웃이 완료되었습니다.</p>
-          <hr>
-          <a href="./index.html" role="button" class="btn btn-success">메인으로 돌아가기</a>
-        </main>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="./index.html">관리자 페이지</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
+       aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbar">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="./index.html">대시보드</a>
+          <a class="nav-item nav-link" href="./event.html">이벤트</a>
+          <a class="nav-item nav-link" href="./blog.html">블로그</a>
+          <a class="nav-item nav-link" href="./user.html">회원</a>
+        </div>
+        <div class="navbar-nav mr-sm-2">
+          <a class="nav-item nav-link" href="./userLogin.html">로그인</a>
+          <a class="nav-item nav-link active" href="./userLogout.html">로그아웃</a>
+          <a class="nav-item nav-link" href="./userEdit.html">관리자 정보 수정</a>
+        </div>
       </div>
+    </nav>
+    <header id="header">
+      <div class="container p-3 bg-dark text-white">
+        <div class="row">
+          <div class="col-sm-9 info">
+            <h4><img src="./img/setting.svg"> </span>로그아웃<small>에 성공했습니다.</small></h4>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <ol class="breadcrumb">
+        <li class="active">다시 페이지에 접속하시려면 로그인 페이지로 이동하세요.</li>
+      </ol>
     </div>
+    <section id="main">
+      <div class="container">
+        <a href="./userLogin.html" class="btn btn-primary">로그인 페이지로 이동하기</a>
+      </div>
+    </section>
+    <footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
+      Copyright ⓒ 2018 나동빈 All Rights Reserved.
+    </footer>
     <!-- 제이쿼리 자바스크립트 추가하기 -->
     <script src="./js/jquery-3.2.1.min.js"></script>
     <!-- Popper 자바스크립트 추가하기 -->
