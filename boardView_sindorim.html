@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+  <head>
+    <title>일요일에 같이 영화볼래??</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 부트스트랩 CSS 추가하기 -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/sidebar.css">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row d-flex d-md-block flex-nowrap wrapper">
+        <nav class="col-md-3 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
+          <div class="list-group border-0 card text-center text-md-left">
+            <a href="./index.html" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">
+              <img style="width: 20px;" src="./img/home.svg"><span class="d-none d-md-inline ml-1">메인</span>
+            </a>
+            <a href="#usermenu" class="list-group-item d-inline-block collapsed" data-toggle="collapse"
+             data-parent="#sidebar" aria-expanded="false">
+              <img style="width: 20px;" src="./img/user.svg"><span class="d-none d-md-inline ml-1">회원 관리</span>
+            </a>
+            <div class="collapse" id="usermenu">
+              <a href="userJoin.html" class="list-group-item" data-parent="#sidebar">회원정보</a>
+              <a href="userLogin.html" class="list-group-item" data-parent="#sidebar">방문현황</a>
+            </div>
+            <a href="board.html" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">
+              <img style="width: 20px;" src="./img/board.svg"><span class="d-none d-md-inline ml-1">모임 안내</span>
+            </a>
+            <a href="qna.html" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">
+              <img style="width: 20px;" src="./img/message.svg"><span class="d-none d-md-inline ml-1">Q & A</span>
+            </a>
+            <!--<a href="#search" class="list-group-item d-inline-block collapsed" data-toggle="collapse"
+             data-parent="#sidebar" aria-expanded="false">
+              <img style="width: 20px;" src="./img/search.svg"><span class="d-none d-md-inline ml-1">검색</span>
+            </a>
+            <div class="collapse" id="search">
+              <div class="input-group p-2" style="background-color: #1c1c1c;">
+                <input type="text" class="form-control" placeholder="내용을 입력하세요.">
+              </div>
+            </div>
+          -->
+          </div>
+        </nav>
+        <main id="main" class="col-md-9 float-left col pl-md-5 pt-3 main">
+          <div class="page-header mt-3">
+            <h2>일영래 모임 장소 안내</h2>
+          </div>
+          
+          <section style="max-width: 300px;">
+            <p class="lead">◎ 정모 오시는 길 (신도림) <img width="60px" height="80px" src="./img/lotte.png" alt="First slide"></p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3164.9633953236726!2d126.88726361578418!3d37.50878147980866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9e677e6524eb%3A0x7bed4cccdffd8c90!2z66Gv642w7Iuc64Sk66eIIOyLoOuPhOumvA!5e0!3m2!1sko!2skr!4v1577582635645!5m2!1sko!2skr" width="300" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+          </section>
+          <br> └ 롯데시네마 7층 매표소 앞 광장
+          
+        </main>
+      </div>
+    </div>
+    <!-- 제이쿼리 자바스크립트 추가하기 -->
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <!-- Popper 자바스크립트 추가하기 -->
+    <script src="./js/popper.min.js"></script>
+    <!-- 부트스트랩 자바스크립트 추가하기 -->
+    <script src="./js/bootstrap.min.js"></script>
+  </body>
+</html>
