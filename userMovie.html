@@ -1,0 +1,443 @@
+<!doctype html>
+<html>
+  <head>
+    <title>일요일에 같이 영화볼래??</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 부트스트랩 CSS 추가하기 -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/sidebar.css">
+    <style>
+      table { width: 100%;text-align:center;color:black; }
+      th, td { border: 1px solid #dadada; }
+     </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row d-flex d-md-block flex-nowrap wrapper">
+        <nav class="col-md-3 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
+          <div class="list-group border-0 card text-center text-md-left">
+            <a href="./index.html" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">
+              <img style="width: 20px;" src="./img/home.svg"><span class="d-none d-md-inline ml-1">메인</span>
+            </a>
+            <a href="#usermenu" class="list-group-item d-inline-block collapsed" data-toggle="collapse"
+             data-parent="#sidebar" aria-expanded="false">
+              <img style="width: 20px;" src="./img/user.svg"><span class="d-none d-md-inline ml-1">회원 관리</span>
+            </a>
+            <div class="collapse" id="usermenu">
+              <a href="userJoin.html" class="list-group-item" data-parent="#sidebar">회원정보</a>
+              <a href="userLogin.html" class="list-group-item" data-parent="#sidebar">방문 현황</a>
+              <a href="userMovie.html" class="list-group-item" data-parent="#sidebar">영화 현황</a>
+            </div>
+            <a href="board.html" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">
+              <img style="width: 20px;" src="./img/board.svg"><span class="d-none d-md-inline ml-1">모임 안내</span>
+            </a>
+            <a href="qna.html" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">
+              <img style="width: 20px;" src="./img/message.svg"><span class="d-none d-md-inline ml-1">Q & A</span>
+            </a>
+            <!--<a href="#search" class="list-group-item d-inline-block collapsed" data-toggle="collapse"
+             data-parent="#sidebar" aria-expanded="false">
+              <img style="width: 20px;" src="./img/search.svg"><span class="d-none d-md-inline ml-1">검색</span>
+            </a>
+            <div class="collapse" id="search">
+              <div class="input-group p-2" style="background-color: #1c1c1c;">
+                <input type="text" class="form-control" placeholder="내용을 입력하세요.">
+              </div>
+            </div>
+          -->
+          </div>
+        </nav>
+        <main id="main" class="col-md-9 float-left col pl-md-5 pt-3 main">
+          <div class="page-header mt-3">
+              <h2>영화 현황</h2>
+          </div>
+          <hr>
+
+          <button class="btn btn-success" data-toggle="modal" data-target="#modal2017_1" style="background-color: blue;">2017 정모</button>
+          <button class="btn btn-success" data-toggle="modal" data-target="#modal2017_2" style="background-color: red;">2017 번개</button>
+         <br><button class="btn btn-success" data-toggle="modal" data-target="#modal2018_1" style="background-color: blue;">2018 정모</button>
+          <button class="btn btn-success" data-toggle="modal" data-target="#modal2018_2" style="background-color: red;">2018 번개</button>
+          <br><button class="btn btn-success" data-toggle="modal" data-target="#modal2019_1" style="background-color: blue;">2019 정모</button>
+          <button class="btn btn-success" data-toggle="modal" data-target="#modal2019_2" style="background-color: red;">2019 번개</button>
+          <canvas id="barChart"></canvas>
+        </main>
+      </div>
+    </div>
+    <!-- 제이쿼리 자바스크립트 추가하기 -->
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <!-- Popper 자바스크립트 추가하기 -->
+    <script src="./js/popper.min.js"></script>
+    <!-- 부트스트랩 자바스크립트 추가하기 -->
+    <script src="./js/bootstrap.min.js"></script>
+    <!-- MDB 라이브러리 추가하기 -->
+     <!-- 2017정모-->
+     <div class="modal fade" id="modal2017_1" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal2017_1">2017 정모</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>    
+
+          </div>
+          <div class="modal-body">
+            <form>
+              <table>
+                <caption>※ 2020.1.1 update </caption>
+                <tr><th>날짜</th><th>정모</th><th>영화명</th><th>참석자</th></tr>
+                <tr><td>171210</td><td style="color:blue;">1회</td><td>오리엔트특급열차</td><td>8</td> </tr>
+                <tr><td>171217</td><td style="color:blue;">2회</td><td>기억의밤</td><td>12</td> </tr>
+                <tr><td>171224</td><td style="color:blue;">3회</td><td>위대한쇼맨</td><td>9</td> </tr>
+                <tr><td>171231</td><td style="color:blue;">4회</td><td>강철비</td><td>12</td> </tr>
+               </table>
+             
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>    
+
+    <!-- 2017번개-->
+    <div class="modal fade" id="modal2017_2" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal2017_2">2017 번개</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>    
+
+          </div>
+          <div class="modal-body">
+            <form>
+              <table>
+                <caption>※ 2020.1.1 update </caption>
+                <tr><th>날짜</th><th>정모</th><th>영화명</th><th>참석자</th></tr>
+                <tr><td>-</td><td style="color:red;">-</td><td>-</td><td>-</td> </tr>
+
+               </table>
+             
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>    
+
+
+    <!-- 2018정모-->
+    <div class="modal fade" id="modal2018_1" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal2018_1">2018 정모</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>    
+
+          </div>
+          <div class="modal-body">
+            <form>
+              <table>
+                <caption>※ 2020.1.1 update </caption>
+                <tr><th>날짜</th><th>정모</th><th>영화명</th><th>참석자</th></tr>
+                <tr><td>180107(일)</td><td style="color:blue;"> 5회 </td><td>싱글즈(뮤지컬)</td><td> 10</td> </tr>
+                <tr><td>180114(일)</td><td style="color:blue;"> 6회 </td><td>신과함께</td><td>  12</td> </tr>
+                <tr><td>180121(일)</td><td style="color:blue;"> 7회 </td><td>코코</td><td>  18</td> </tr>
+                <tr><td>180128(일)</td><td style="color:blue;"> 8회 </td><td>커뮤터</td><td>  8</td> </tr>
+                <tr><td>180204(일)</td><td style="color:blue;"> 9회 </td><td>그것만이내세상</td><td>  12</td> </tr>
+                <tr><td>180211(일)</td><td style="color:blue;"> 10회 </td><td>망원동 브라더스(연극)</td><td>  26</td> </tr>
+                <tr><td>180215(일)</td><td style="color:blue;"> 11회 </td><td>블랙펜서</td><td>  7</td> </tr>
+                <tr><td>180304(일)</td><td style="color:blue;"> 12회 </td><td>궁합</td><td>         18</td> </tr>
+                <tr><td>180311(일)</td><td style="color:blue;"> 13회 </td><td>리틀포레스트</td><td>  17</td> </tr>
+                <tr><td>180318(일)</td><td style="color:blue;"> 14회 </td><td>지금만나러갑니다</td><td>  22</td> </tr>
+                <tr><td>180325(일)</td><td style="color:blue;"> 15회 </td><td>퍼시픽림 </td><td>   16</td> </tr>
+                <tr><td>180330(일)</td><td style="color:blue;"> 16회 </td><td>레디플레이어원 </td><td> 23</td> </tr>
+                <tr><td>180408(일)</td><td style="color:blue;"> 17회 </td><td>바람바람바람</td><td>  21</td> </tr>
+                <tr><td>180415(일)</td><td style="color:blue;"> 18회 </td><td>콰이어트플레이스</td><td>  26</td> </tr>
+                <tr><td>180425(일)</td><td style="color:blue;"> 19회 </td><td>당신의부탁</td><td>  21</td> </tr>
+                <tr><td>180429(일)</td><td style="color:blue;"> 20회 </td><td>인피니티워</td><td>  24</td> </tr>
+                <tr><td>180506(일)</td><td style="color:blue;"> 21회 </td><td>챔피언 </td><td> 24</td> </tr>
+                <tr><td>180513(일)</td><td style="color:blue;"> 22회 </td><td>레슬러</td><td>  22</td> </tr>
+                <tr><td>180520(일)</td><td style="color:blue;"> 23회 </td><td>데드풀2 </td><td> 24</td> </tr>
+                <tr><td>180527(일)</td><td style="color:blue;"> 24회 </td><td>독전 </td><td> 31</td> </tr>
+                <tr><td>180603(일)</td><td style="color:blue;"> 25회 </td><td>트루스오어데어 </td><td> 11</td> </tr>
+                <tr><td>180610(일)</td><td style="color:blue;"> 26회 </td><td>쥬라기월드</td><td>  29</td> </tr>
+                <tr><td>180617(일)</td><td style="color:blue;"> 27회 </td><td>오션스8</td><td>  27</td> </tr>
+                <tr><td>180701(일)</td><td style="color:blue;"> 28회 </td><td>미드나잇 선</td><td>  21</td> </tr>
+                <tr><td>180708(일)</td><td style="color:blue;"> 29회 </td><td>앤트맨과 와스프 </td><td>  20</td> </tr>
+                <tr><td>180715(일)</td><td style="color:blue;"> 30회 </td><td>스카이스크래퍼</td><td>  16</td> </tr>
+                <tr><td>180722(일)</td><td style="color:blue;"> 31회 </td><td>인크레더블2 </td><td>   16</td> </tr>
+                <tr><td>180729(일)</td><td style="color:blue;"> 32회 </td><td>미션임파서블:폴아웃</td><td>  22</td> </tr>
+                <tr><td>180805(일)</td><td style="color:blue;"> 33회 </td><td>신과함께2</td><td>  20</td> </tr>
+                <tr><td>180812(일)</td><td style="color:blue;"> 34회 </td><td>맘마미아2 </td><td> 12</td> </tr>
+                <tr><td>180816(일)</td><td style="color:blue;"> 35회 </td><td>목격자 </td><td>  12</td> </tr>
+                <tr><td>180902(일)</td><td style="color:blue;"> 36회 </td><td>너의결혼식</td><td>  17</td> </tr>
+                <tr><td>180909(일)</td><td style="color:blue;"> 37회 </td><td>서치</td><td>  25</td> </tr>
+                <tr><td>180923(일)</td><td style="color:blue;"> 38회 </td><td>명당 </td><td> 14</td> </tr>
+                <tr><td>180930(일)</td><td style="color:blue;"> 39회 </td><td>협상</td><td>  16</td> </tr>
+                <tr><td>181007(일)</td><td style="color:blue;"> 40회 </td><td>베놈 </td><td> 30</td> </tr>
+                <tr><td>181014(일)</td><td style="color:blue;"> 41회 </td><td>암수살인</td><td>  15</td> </tr>
+                <tr><td>181021(일)</td><td style="color:blue;"> 42회 </td><td>퍼스트맨 </td><td> 24</td> </tr>
+                <tr><td>181028(일)</td><td style="color:blue;"> 43회 </td><td>창궐</td><td>  5</td> </tr>
+                <tr><td>181104(일)</td><td style="color:blue;"> 44회 </td><td>보헤미안렙소디 </td><td> 16</td> </tr>
+                <tr><td>181111(일)</td><td style="color:blue;"> 45회 </td><td>완벽한타인 </td><td> 17 </td> </tr>
+                <tr><td>181118(일)</td><td style="color:blue;"> 46회 </td><td>신비한동물사전2</td><td>   17</td> </tr>
+                <tr><td>181202(일)</td><td style="color:blue;"> 47회 </td><td>베일리어게인 </td><td>   12</td> </tr>
+                <tr><td>181209(일)</td><td style="color:blue;"> 48회 </td><td>도어락  </td><td> 10</td> </tr>
+                <tr><td>181216(일)</td><td style="color:blue;"> 49회 </td><td>스파이더맨 : 더 유니버스</td><td>   19</td> </tr>
+                <tr><td>181223(일)</td><td style="color:blue;"> 50회 </td><td>마약왕  </td><td>  20</td> </tr>
+                <tr><td>181230(일)</td><td style="color:blue;"> 51회 </td><td>아쿠아맨 </td><td>  17</td> </tr>
+                              
+               </table>
+             
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>    
+
+    <!-- 2018번개-->
+    <div class="modal fade" id="modal2018_2" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal2018_2">2018 번개</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>    
+
+          </div>
+          <div class="modal-body">
+            <form>
+              <table>
+                <caption>※ 2020.1.1 update </caption>
+                <tr><th>날짜</th><th>번개</th><th>영화명</th><th>참석자</th></tr>
+                <tr><td>180323(금)</td><td style="color:red;">  1회 </td><td>리틀포레스트 </td><td> 7</td> </tr>
+                <tr><td>180406(금)</td><td style="color:red;">  2회 </td><td>곤지암 </td><td> 14</td> </tr>
+                <tr><td>180413(금)</td><td style="color:red;">  3회 </td><td>램페이지</td><td>  8</td> </tr>
+                <tr><td>180427(금)</td><td style="color:red;">  4회 </td><td>인피니티워 </td><td> 11</td> </tr>
+                <tr><td>180512(토)</td><td style="color:red;">  5회 </td><td>당갈  </td><td> 13</td> </tr>
+                <tr><td>180518(금)</td><td style="color:red;">  6회 </td><td>데드풀2 </td><td> 5</td> </tr>
+                <tr><td>180606(수)</td><td style="color:red;">  7회 </td><td>아이필프리티</td><td>  18</td> </tr>
+                <tr><td>180622(금)</td><td style="color:red;">  8회 </td><td>탐정 </td><td> 10</td> </tr>
+                <tr><td>180815(수)</td><td style="color:red;">  9회 </td><td>메가로돈</td><td>  12</td> </tr>
+                <tr><td>180921(금)</td><td style="color:red;">  10회 </td><td>더넌 </td><td> 11</td> </tr>
+                <tr><td>180926(수)</td><td style="color:red;">  11회 </td><td>안시성</td><td>  8</td> </tr>
+                <tr><td>181012(금)</td><td style="color:red;">  12회 </td><td>킨더비기닝 </td><td> 12</td> </tr>
+
+               </table>
+ 
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>    
+
+     <!-- 2019정모-->
+     <div class="modal fade" id="modal2019_1" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal2019_1">2019 정모</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>    
+
+          </div>
+          <div class="modal-body">
+            <form>
+              <table>
+                <caption>※ 2020.1.1 update </caption>
+                <tr><th>날짜</th><th>정모</th><th>영화명</th><th>참석자</th></tr>
+                <tr><td>190106(일)</td><td style="color:blue;">  52회 </td><td>범블비 </td><td> 33</td> </tr>
+                <tr><td>190113(일)</td><td style="color:blue;">  53회 </td><td>말모이 </td><td> 20</td> </tr>
+                <tr><td>190127(일)</td><td style="color:blue;">  54회 </td><td>내안의그놈</td><td>  20</td> </tr>
+                <tr><td>190203(일)</td><td style="color:blue;">  55회 </td><td>뺑반   </td><td> 18</td> </tr>
+                <tr><td>190210(일)</td><td style="color:blue;">  56회 </td><td>알리타 </td><td>  23</td> </tr>
+                <tr><td>190217(일)</td><td style="color:blue;">  57회 </td><td>해피데스데이2유</td><td>  16</td> </tr>
+                <tr><td>190224(일)</td><td style="color:blue;">  58회 </td><td>사바하</td><td>  20</td> </tr>
+                <tr><td>190303(일)</td><td style="color:blue;">  59회 </td><td>증인</td><td>  20</td> </tr>
+                <tr><td>190310(일)</td><td style="color:blue;">  60회 </td><td>캡틴마블</td><td>  27</td> </tr>
+                <tr><td>190317(일)</td><td style="color:blue;">  61회 </td><td>이스케이프룸</td><td>  14</td> </tr>
+                <tr><td>190324(일)</td><td style="color:blue;">  62회 </td><td>돈 </td><td> 23</td> </tr>
+                <tr><td>190331(일)</td><td style="color:blue;">  63회 </td><td>어스 </td><td>  15</td> </tr>
+                <tr><td>190407(일)</td><td style="color:blue;">  64회 </td><td>샤잠</td><td> 19</td> </tr>
+                <tr><td>190421(일)</td><td style="color:blue;">  65회 </td><td>헬보이</td><td>  12 </td> </tr>
+                <tr><td>190428(일)</td><td style="color:blue;">  66회 </td><td>어벤져스</td><td>  27</td> </tr>
+                <tr><td>190512(일)</td><td style="color:blue;">  67회 </td><td>명탐정 피카츄</td><td>  7</td> </tr>
+                <tr><td>190519(일)</td><td style="color:blue;">  68회 </td><td>배심원들</td><td>  17</td> </tr>
+                <tr><td>190526(일)</td><td style="color:blue;">  69회 </td><td>더보이 </td><td> 8</td> </tr>
+                <tr><td>190602(일)</td><td style="color:blue;">  70회 </td><td>알라딘 </td><td> 14</td> </tr>
+                <tr><td>190609(일)</td><td style="color:blue;">  71회 </td><td>기생충 </td><td> 22</td> </tr>
+                <tr><td>190616(일)</td><td style="color:blue;">  72회 </td><td>맨인블랙 </td><td> 17</td> </tr>
+                <tr><td>190623(일)</td><td style="color:blue;">  73회 </td><td>토이스토리4 </td><td> 14 </td> </tr>
+                <tr><td>190630(일)</td><td style="color:blue;">  74회 </td><td>존윅3  </td><td> 16</td> </tr>
+                <tr><td>190707(일)</td><td style="color:blue;">  75회 </td><td>스파이더맨:파프롬홈</td><td> 17</td> </tr>
+                <tr><td>190721(일)</td><td style="color:blue;">  76회 </td><td>라이온킹</td><td>   32</td> </tr>
+                <tr><td>190804(일)</td><td style="color:blue;">  77회 </td><td>엑시트</td><td>  18</td> </tr>
+                <tr><td>190811(일)</td><td style="color:blue;">  78회 </td><td>사자 </td><td>  12</td> </tr>
+                <tr><td>190818(일)</td><td style="color:blue;">  79회 </td><td>분노의질주:홉스앤쇼</td><td>   14</td> </tr>
+                <tr><td>190831(일)</td><td style="color:blue;">  80회 </td><td>블라인드멜로디  </td><td> 19</td> </tr>
+                <tr><td>190908(일)</td><td style="color:blue;">  81회 </td><td>그것2</td><td>   9</td> </tr>
+                <tr><td>190915(일)</td><td style="color:blue;">  82회 </td><td>나쁜녀석들  </td><td> 25</td> </tr>
+                <tr><td>190923(일)</td><td style="color:blue;">  83회 </td><td>애드아스트라 </td><td>  12</td> </tr>
+                <tr><td>191006(일)</td><td style="color:blue;">  84회  </td><td>조커  </td><td>  26</td> </tr>
+                <tr><td>191013(일)</td><td style="color:blue;">  85회 </td><td>제미니맨 </td><td>  15</td> </tr>
+                <tr><td>191020(일)</td><td style="color:blue;">  86회 </td><td>말레피센트2 </td><td>   22</td> </tr>
+                <tr><td>191027(일)</td><td style="color:blue;">  87회 </td><td>82년생김지영 </td><td>  31</td> </tr>
+                <tr><td>191103(일)</td><td style="color:blue;">  88회 </td><td>터미네이터:다크페이트 </td><td>  28</td> </tr>
+                <tr><td>191110(일)</td><td style="color:blue;">  89회 </td><td>신의한수:귀수편 </td><td>  27</td> </tr>
+                <tr><td>191124(일)</td><td style="color:blue;">  90회 </td><td>겨울왕국2</td><td>   30</td> </tr>
+                <tr><td>191201(일)</td><td style="color:blue;">  91회 </td><td>나를찾아줘</td><td>  9</td> </tr>
+                <tr><td>191208(일)</td><td style="color:blue;">  92회 </td><td>나이브스아웃</td><td>   30</td> </tr>
+                <tr><td>191215(일)</td><td style="color:blue;">  93회 </td><td>쥬만지:넥스트레벨</td><td>  24</td> </tr>
+                <tr><td>191222(일)</td><td style="color:blue;">  94회 </td><td>백두산</td><td>  29</td> </tr>
+                <tr><td>191229(일)</td><td style="color:blue;">  95회 </td><td>천문 </td><td>  31</td> </tr>
+               </table>
+             
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>    
+
+    <!-- 2019번개-->
+    <div class="modal fade" id="modal2019_2" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal2019_2">2019 번개</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>    
+
+          </div>
+          <div class="modal-body">
+            <form>
+              <table>
+                <caption>※ 2020.1.1 update </caption>
+                <tr><td>190101(화)</td><td style="color:red;">  13회 </td><td>스윙키즈</td><td>  13</td> </tr>
+                <tr><td>190118(금)</td><td style="color:red;">  14회 </td><td>미래의미라이 </td><td>  11</td> </tr>
+                <tr><td>190125(금)</td><td style="color:red;">  15회 </td><td>극한직업 </td><td>  10</td> </tr>
+                <tr><td>190212(화)</td><td style="color:red;">  16회 </td><td>드래곤길들이기3</td><td>    10</td> </tr>
+                <tr><td>190402(화)</td><td style="color:red;">  17회 </td><td>덤보  </td><td>  8</td> </tr>
+                <tr><td>190419(금)</td><td style="color:red;">  18회 </td><td>요로나의 저주 </td><td> 16</td> </tr>
+                <tr><td>190524(금)</td><td style="color:red;">  19회 </td><td>악인전  </td><td> 6</td> </tr>
+                <tr><td>190605(목)</td><td style="color:red;">  20회 </td><td>엑스맨</td><td>  8</td> </tr>
+                <tr><td>191009(수)</td><td style="color:red;">  21회 </td><td>가장보통의연애 </td><td>   11</td> </tr>
+                <tr><td>191129(금)</td><td style="color:red;">  22회 </td><td>겨울왕국2 </td><td>   8</td> </tr>
+                <tr><td>191228(토)</td><td style="color:red;">  23회 </td><td>시동 </td><td>  10</td> </tr>
+               </table>
+        
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>    
+
+
+
+
+         <!-- 2020정모-->
+         <div class="modal fade" id="modal2020_1" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal2020_1">2020 정모</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>    
+    
+              </div>
+              <div class="modal-body">
+                <form>
+                  <table>
+                    <caption>※ 2020.1.1 update </caption>
+                    <tr><th>날짜</th><th>정모</th><th>영화명</th><th>참석자</th></tr>
+                    <tr><td>200105</td><td style="color:blue;">96회</td><td>미드웨이</td><td>30</td> </tr>
+
+                   </table>
+                 
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>    
+    
+        <!-- 2020번개-->
+        <div class="modal fade" id="modal2020_2" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal2020_2">2020 번개</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>    
+    
+              </div>
+              <div class="modal-body">
+                <form>
+                  <table>
+                    <caption>※ 2020.1.1 update </caption>
+                    <tr><th>날짜</th><th>정모</th><th>영화명</th><th>참석자</th></tr>
+                    <tr><td>-</td><td style="color:red;">-</td><td>-</td><td>-</td> </tr>
+    
+                   </table>
+                 
+                </form>
+              </div>
+            </div>
+          </div>
+        </div> 
+
+
+       
+
+<!-- 제이쿼리 자바스크립트 추가하기 -->
+<script src="./js/jquery-3.2.1.min.js"></script>
+<!-- Popper 자바스크립트 추가하기 -->
+<script src="./js/popper.min.js"></script>
+<!-- 부트스트랩 자바스크립트 추가하기 -->
+<script src="./js/bootstrap.min.js"></script>
+<!-- MDB 라이브러리 추가하기 -->
+<script src="./js/mdb.min.js"></script>
+<script>
+var ctxB = document.getElementById("barChart").getContext('2d');
+var myBarChart = new Chart(ctxB, {
+    type: 'bar',
+    data: {
+        labels: ["정모", "번개"],
+        datasets: [{
+            label: '종합현황',
+            data: [96,23],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+
+            ],
+            borderWidth: 1
+        }]
+    },
+    optionss: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+
+
+  </body>
+</html>
