@@ -50,18 +50,26 @@
           <hr>
           <form class="pt-3 md-3" style="max-width: 720px">
             <div class="list-group mt-3">
-              <a href="#" class="list-group-item active">2018 방문자 지수</a>
+              <a href="#" class="list-group-item active">2020 방문자 지수</a>
               <div class="list-group-item">
-                <canvas id="lineChart2018"></canvas>
+                <canvas id="lineChart2020"></canvas>
               </div>
             </div>
-
+            <div class="modal-body" style="color:rgb(134, 144, 144);">※ 2020.1.4 update</div>
             <div class="list-group mt-3">
               <a href="#" class="list-group-item active">2019 방문자 지수</a>
               <div class="list-group-item">
                 <canvas id="lineChart2019"></canvas>
               </div>
             </div>
+
+            <div class="list-group mt-3">
+              <a href="#" class="list-group-item active">2018 방문자 지수</a>
+              <div class="list-group-item">
+                <canvas id="lineChart2018"></canvas>
+              </div>
+            </div>
+
         </main>
       </div>
     </div>
@@ -73,6 +81,7 @@
     <script src="./js/bootstrap.min.js"></script>
     <!-- MDB 라이브러리 추가하기 -->
         <script src="./js/mdb.min.js"></script>
+        <!-- 2018 방문자 지수 -->        
         <script>
           var ctxL = document.getElementById("lineChart2018").getContext('2d');
           var myLineChart = new Chart(ctxL, {
@@ -97,6 +106,7 @@
               }
           });
         </script>
+        <!-- 2019 방문자 지수 -->
          <script>
           var ctxL = document.getElementById("lineChart2019").getContext('2d');
           var myLineChart = new Chart(ctxL, {
@@ -113,6 +123,31 @@
                           pointHighlightFill: "#fff",
                           pointHighlightStroke: "rgba(220,220,220,1)",
                           data: [107,107,99,72,38,77,58,63,46,105,93,132]
+                      }
+                  ]
+              },
+              options: {
+                  responsive: true
+              }
+          });
+        </script>
+        <!-- 2020 방문자 지수 -->
+        <script>
+          var ctxL = document.getElementById("lineChart2020").getContext('2d');
+          var myLineChart = new Chart(ctxL, {
+              type: 'line',
+              data: {
+                  labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+                  datasets: [
+                      {
+                          label: "일영래 방문자 (정모,번개)",
+                          fillColor: "rgba(220,220,220,0.2)",
+                          strokeColor: "rgba(220,220,220,1)",
+                          pointColor: "rgba(220,220,220,1)",
+                          pointStrokeColor: "#fff",
+                          pointHighlightFill: "#fff",
+                          pointHighlightStroke: "rgba(220,220,220,1)",
+                          data: [0,0,0,0,0,0,0,0,0,0,0,0]
                       }
                   ]
               },
