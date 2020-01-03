@@ -1,17 +1,44 @@
 <!doctype html>
 <html>
   <head>
+    
+<style type="text/css">
+  .ui-datepicker-calendar > tbody td.ui-datepicker-week-end:first-child a { color: red; }
+  .ui-datepicker-calendar > tbody td.ui-datepicker-week-end:last-child a { color: blue; }
+  .ui-datepicker-current { display: none; }
+   </style>
+       <style type="text/css">
+        table { width: 100%;text-align:center;color:black; }
+        th, td { border: 1px solid #dadada; }
+       </style>
     <title>일요일에 같이 영화볼래??</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- 부트스트랩 CSS 추가하기 -->
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/sidebar.css">
-    <style>
-      table { width: 100%;text-align:center;color:black; }
-      th, td { border: 1px solid #dadada; }
-     </style>
-   
+    <link rel="stylesheet" href="./jquery-ui-1.12.1/jquery-ui.min.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="./jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+      //<![CDATA[
+      $(function(){
+      
+        $("#date2").datepicker({
+                  minDate:0,
+        showOn: "button",
+      showButtonPanel: "true",
+                  buttonImage: "img/calendar.gif",
+        buttonImageOnly: true,
+                  dateFormat: "yy-mm-dd",
+                  showOtherMonths: true,
+                  currentText: "test"
+        });
+      
+      });
+      //]]>
+      </script>
   </head>
   <body>
     <div class="container-fluid">
@@ -54,7 +81,7 @@
           <div class="page-header mt-3">
               <h3>일요일에 같이 영화볼래??</h3>
           </div>
-          <h5><p class="lead"> - 간단한 모임안내 홈페이지 입니다.</p></h5>
+          <h8><p class="lead"> - 간단한 모임안내 홈페이지 입니다.</p></h8>
           <hr>
           <button class="btn btn-success" data-toggle="modal" data-target="#modal" >운영진 안내</button>
           <button class="btn btn-success" data-toggle="modal" data-target="#modal2" style="background-color: rgb(54, 162, 235);" > 계좌 안내</button>
@@ -138,7 +165,7 @@
 
 
           <div class="width collapse show mt-3" aria-expanded="true">
-              <p>본 사이트는 회원 관리, 모임안내, Q&A를 제공.</p>
+              <h6>본 사이트는 회원 관리, 모임안내, Q&A를 제공.</h6>
           </div>
           <div id="carousel" class="carousel slide" style="max-width: 1080px;" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -180,8 +207,11 @@
               <span class="sr-only">다음 사진</span>
             </a>
           </div>
+
           <section class="mt-4 mb-3 pt-4 pb-3" style="max-width: 1080px;">
-            <p class="lead">◎ 행사 안내</p>
+            <p class="lead">◎ 행사 안내        
+            <input type="text" name="date" id="date2" size="12" style="display:none"  />
+ 
             <hr>
             <table class="table table-striped">
               <thead>
@@ -219,8 +249,6 @@
         </main>
       </div>
     </div>
-    <!-- 제이쿼리 자바스크립트 추가하기 -->
-    <script src="./js/jquery-3.2.1.min.js"></script>
     <!-- Popper 자바스크립트 추가하기 -->
     <script src="./js/popper.min.js"></script>
     <!-- 부트스트랩 자바스크립트 추가하기 -->
