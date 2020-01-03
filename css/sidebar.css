@@ -7,6 +7,10 @@ body {
   font-family: 'Nanum Gothic';
 }
 
+.red {
+  color:red
+}
+
 
 /* 실질적인 각 내비게이션 메뉴들의 색상 등을 정의 */
 #sidebar .list-group-item {
