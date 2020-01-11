@@ -24,7 +24,7 @@
     <script src="./jquery-ui-1.12.1/jquery-ui.min.js"></script>
     <script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
     <script type="text/javascript">
-      //<![CDATA[
+      //<![CDATA[ 
       $(function(){
       
         $("#date2").datepicker({
@@ -41,6 +41,55 @@
       });
       //]]>
       </script>
+      <script>
+        var today = new Date();
+        var dd = today.getDate()-1;
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+        
+        if(dd<10) {
+            dd='0'+dd
+        } 
+        
+        if(mm<10) {
+            mm='0'+mm
+        } 
+        
+        today = yyyy+mm+dd;
+      </script>
+<!-- 상영영화 추가 -->
+<script type="text/javascript">
+  $(document).ready(function(){
+      $.ajax({
+          dataType: "xml",
+          method: "GET",
+          url: "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml",
+          data: { key:"efb5b74d0b2390b5a20d51060683ea37", targetDt:today },
+          success: function (xml) {
+              // Parse the xml file and get data
+              $(xml).find("boxOfficeResult").each(function(){
+                 
+                  $(this).find("movieNm").each(function(i){
+                      if (i != 0) { $("#movieNm").append("<br> "); }
+                      $("#movieNm").append($(this).text());
+                  });
+                  $(this).find("openDt").each(function(j){
+                      if (j != 0) { $("#openDt").append("<br> "); }
+                      $("#openDt").append($(this).text());
+                  });
+                  $(this).find("audiCnt").each(function(k){
+                      if (k != 0) { $("#audiCnt").append("<br> "); }
+                      $("#audiCnt").append($(this).text());
+                  });
+              });
+          }
+      });
+
+
+
+
+  });
+</script>
   </head>
   <body>
     <div class="container-fluid">
@@ -162,7 +211,38 @@
               </div>
             </div>
           </div>
-          <!-- 일영래 바로가기-->
+          <!-- 상영작 바로가기-->
+
+          <div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modal">박스오피스 현재상영작</h5>
+                  <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>    
+
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <table>
+                      <caption>※영화 통합전산망 실시간 데이터</caption>
+                      <tr>
+                       <th>상영작</th><th>개봉일자</th><th>관객수</th>
+                      </tr>
+                      <tr>
+                       <td> <div id="movieNm"></div></td>
+                       <td> <div id="openDt"></div></td>
+                       <td> <div id="audiCnt"></div></td>
+                      </tr>
+                     
+                     </table>
+                   
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
           
 
 
@@ -213,7 +293,8 @@
           <section class="mt-4 mb-3 pt-4 pb-3" style="max-width: 1080px;">
             <p class="lead">◎ 정기 행사 안내        
             <input type="text" name="date" id="date2" size="12" style="display:none"  />
- 
+
+            <button class="btn btn-success" data-toggle="modal" data-target="#modal4" style="background-color: rgb(255, 0, 0);" > 상영작</button>
             <hr>
             <table class="table table-striped">
               <thead>
