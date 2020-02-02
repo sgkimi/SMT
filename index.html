@@ -4,6 +4,7 @@
     <script type="text/javascript">
       function myblink() {
           document.all.mytext.style.display=document.all.mytext.style.display==""?"none":"";
+          document.all.mytext1.style.display=document.all.mytext1.style.display==""?"none":"";
       }
       setInterval(myblink,1000);
       </script>
@@ -120,6 +121,9 @@
             <a href="qna.html" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">
               <img style="width: 20px;" src="./img/message.svg"><span class="d-none d-md-inline ml-1">Q & A</span>
             </a>
+            <a href="http://coronamap.site/" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">
+              <img style="width: 20px;" src="./img/test.svg"><span class="d-none d-md-inline ml-1">국내 확진자 검색</span>
+            </a>
             
             <!--<a href="#search" class="list-group-item d-inline-block collapsed" data-toggle="collapse"
              data-parent="#sidebar" aria-expanded="false">
@@ -136,7 +140,7 @@
        
         <main id="main" class="col-md-9 float-left col pl-md-5 pt-3 main">
           <div class="page-header mt-3">
-              <h3>일요일에 같이 영화볼래<span id=mytext>??</span></h3>
+              <h3>일요일에 같이 영화볼래??</span></h3>
           </div>
           <h8><p class="lead"> - 간단한 모임안내 홈페이지 입니다. </p></h8>
           <hr>
@@ -318,13 +322,13 @@
                 
                 <tr>
                   <th scope="row" class="mobile" style="text-align:center;">3</th>
-                  <td style="text-align:left;"> 5월) 5/23(토) ~ 5/24(일) : 여행 <b style="color:blue;"> (투표예정) </b> </td>
+                  <td style="text-align:left;"> 5월) 5/23(토) ~ 5/24(일) : 여행 <span id=mytext><b style="color:blue;"> (투표예정) </b></span> </td>
                   <td class="mobile" style="text-align:center;">모임장</td>
                   <td class="mobile" style="text-align:center;">2020-01-18</td>
                 </tr>
                 <tr>
                   <th scope="row" class="mobile" style="text-align:center;">2</th>
-                  <td style="text-align:left;"> 2월) 2/23(일) : 철산 곱창프린스 <b style="color:blue;"> (투표예정) </b> </td>
+                  <td style="text-align:left;"> 2월) 2/23(일) : 철산 곱창프린스 <span id=mytext1> <b style="color:blue;"> (투표예정) </b></span> </td>
                   <td class="mobile" style="text-align:center;">모임장</td>
                   <td class="mobile" style="text-align:center;">2020-01-04</td>
                 </tr>
