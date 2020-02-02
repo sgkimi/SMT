@@ -1,12 +1,17 @@
 <!doctype html>
 <html>
   <head>
-    
-<style type="text/css">
-  .ui-datepicker-calendar > tbody td.ui-datepicker-week-end:first-child a { color: red; }
-  .ui-datepicker-calendar > tbody td.ui-datepicker-week-end:last-child a { color: blue; }
-  .ui-datepicker-current { display: none; }
-   </style>
+    <script type="text/javascript">
+      function myblink() {
+          document.all.mytext.style.display=document.all.mytext.style.display==""?"none":"";
+      }
+      setInterval(myblink,1000);
+      </script>
+    <style type="text/css">
+      .ui-datepicker-calendar > tbody td.ui-datepicker-week-end:first-child a { color: red; }
+      .ui-datepicker-calendar > tbody td.ui-datepicker-week-end:last-child a { color: blue; }
+      .ui-datepicker-current { display: none; }
+    </style>
        <style type="text/css">
         table { width: 100%;text-align:center;color:black; }
         th, td { border: 1px solid #dadada; }
@@ -131,9 +136,9 @@
        
         <main id="main" class="col-md-9 float-left col pl-md-5 pt-3 main">
           <div class="page-header mt-3">
-              <h3>일요일에 같이 영화볼래??</h3>
+              <h3>일요일에 같이 영화볼래<span id=mytext>??</span></h3>
           </div>
-          <h8><p class="lead"> - 간단한 모임안내 홈페이지 입니다.</p></h8>
+          <h8><p class="lead"> - 간단한 모임안내 홈페이지 입니다. </p></h8>
           <hr>
           <button class="btn btn-success" data-toggle="modal" data-target="#modal" >운영진 안내</button>
           <button class="btn btn-success" data-toggle="modal" data-target="#modal2" style="background-color: rgb(54, 162, 235);" > 계좌 안내</button>
@@ -251,7 +256,7 @@
 
 
           <div class="width collapse show mt-3" aria-expanded="true">
-              <h6>본 사이트는 회원 관리, 모임안내, Q&A를 제공.</h6>
+            <marquee style="" behavior="alternate" width="400" scrollamount="50" scrolldelay="2000">본 사이트는 <b style="color:blue;">회원 관리, 모임안내, Q&A </b>를 제공.</marquee>
           </div>
           <div id="carousel" class="carousel slide" style="max-width: 1080px;" data-ride="carousel">
             <ol class="carousel-indicators">
