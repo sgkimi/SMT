@@ -2,7 +2,7 @@
 <html>
     <head>
         <style>
-        .table {width: 100%;text-align:center;color:black; background-color: wheat;}
+        .table {width: 100%;text-align:center;color:black; background-color: wheat; font-size:40px;}
          th, td { border: 1px solid #dadada; }
         .table caption{caption-side: bottom; display: none; color:black;}
         </style>
@@ -41,7 +41,7 @@
                     dataType: "xml",
                     method: "GET",
                     url: "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml",
-                    data: { key:"efb5b74d0b2390b5a20d51060683ea37", targetDt: tagetdt },
+                    data: { key:"-", targetDt: tagetdt },
                     success: function (xml) {
                         // Parse the xml file and get data
                         $(xml).find("boxOfficeResult").each(function(){
