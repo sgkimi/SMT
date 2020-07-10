@@ -48,55 +48,72 @@
       });
       //]]>
       </script>
-      <script>
-        var today = new Date();
-        var dd = today.getDate()-1;
-        var mm = today.getMonth()+1; //January is 0!
-        var yyyy = today.getFullYear();
-        
-        if(dd<10) {
-            dd='0'+dd
-        } 
-        
-        if(mm<10) {
-            mm='0'+mm
-        } 
-        
-        today = yyyy+mm+dd;
-      </script>
-<!-- 상영영화 추가 
-<script type="text/javascript">
-  $(document).ready(function(){
-      $.ajax({
-          dataType: "xml",
-          method: "GET",
-          url: "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml",
-          data: { key:"", targetDt:today },
-          success: function (xml) {
-              // Parse the xml file and get data
-              $(xml).find("boxOfficeResult").each(function(){
-                 
-                  $(this).find("movieNm").each(function(i){
-                      if (i != 0) { $("#movieNm").append("<br> "); }
-                      $("#movieNm").append($(this).text());
-                  });
-                  $(this).find("openDt").each(function(j){
-                      if (j != 0) { $("#openDt").append("<br> "); }
-                      $("#openDt").append($(this).text());
-                  });
-                  $(this).find("audiCnt").each(function(k){
-                      if (k != 0) { $("#audiCnt").append("<br> "); }
-                      $("#audiCnt").append($(this).text());
-                  });
-              });
-          }
-      });
+      <!-- 박스오피스 관련 -->
+      <style>
+        .table caption{caption-side: bottom; display: none; color:black;}
+        </style>
+          <meta charset="UTF-8">
+        <script>
+            var today = new Date();
+            var week = new Array('일', '월', '화', '수', '목', '금', '토');
+            var dayName = week[today.getDay()];
+            var yesterdayName = week[today.getDay()-1];
+            var yesterday = new Date();            
+            var dd = yesterday.getDate()-1;
+            var mm = yesterday.getMonth()+1; //January is 0!
+            var yyyy = yesterday.getFullYear();
+            var dd2 = today.getDate();
+            var mm2 = today.getMonth()+1; //January is 0!
+            var yyyy2 = today.getFullYear();
+            if(dd<10) { dd='0'+dd } 
+            if(mm<10) { mm='0'+mm } 
+            if(dd2<10) { dd2='0'+dd2 } 
+            if(mm2<10) { mm2='0'+mm2 } 
+            yesterday = yyyy+"-"+mm+"-"+dd;
+            tagetdt=yyyy+mm+dd;
+            today = yyyy2+"-"+mm2+"-"+dd2;
+            /*document.write("<h1>");
+            document.write("◎ TODAY : "+today+"("+dayName+")"+"</br><hr>");
+            document.write("◎ BoxOffice 조회기준일자 : "+yesterday+"("+yesterdayName+")"+"</br><hr>");
+            document.write("※ BoxOffice TOP 10 목록입니다."+"</br><hr>")
+            document.write("</h1>");*/
+            
+        </script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+        </script>        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $.ajax({
+                    dataType: "xml",
+                    method: "GET",
+                    url: "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml",
+                    data: { key:"efb5b74d0b2390b5a20d51060683ea37", targetDt: tagetdt },
+                    success: function (xml) {
+                        // Parse the xml file and get data
+                        $(xml).find("boxOfficeResult").each(function(){
+                           
+                            $(this).find("movieNm").each(function(i){
+                                if (i != 0) { $("#movieNm").append("<br>"); }
+                                $("#movieNm").append($(this).text());                          
+                            });
+                            $(this).find("openDt").each(function(j){
+                                if (j != 0) { $("#openDt").append("<br>"); }
+                                $("#openDt").append($(this).text());
+                            });
+                            $(this).find("rank").each(function(k){                        
+                                if (k != 0) {  $("#rank").append("<br>"); }
+                                $("#rank").append($(this).text());
+                            });
+                            $(this).find("audiAcc").each(function(l){    
+                                if (l != 0) {   $("#audiAcc").append("<br>"); }                          
+                                $("#audiAcc").append($(this).text());
+                            });
 
-
-
-  });
-</script>
--->
+                        });
+                    }
+                });
+            });
+        </script>
 
   </head>
   <body>
@@ -221,38 +238,7 @@
               </div>
             </div>
           </div>
-          <!-- 상영작 바로가기-->
-
-          <div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="modal">박스오피스 현재상영작</h5>
-                  <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>    
-
-                </div>
-                <div class="modal-body">
-                  <form>
-                    <table>
-                      <caption>※영화 통합전산망 실시간 데이터</caption>
-                      <tr>
-                       <th>상영작</th><th>개봉일자</th><th>관객수</th>
-                      </tr>
-                      <tr>
-                       <td> <div id="movieNm"></div></td>
-                       <td> <div id="openDt"></div></td>
-                       <td> <div id="audiCnt"></div></td>
-                      </tr>
-                     
-                     </table>
-                   
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
+          
           
 
 
@@ -302,12 +288,63 @@
           
 
           <section class="mt-4 mb-3 pt-4 pb-3" style="max-width: 1080px;">
-            <p class="lead">◎ 정기 행사 안내        
+            <p class="lead">◎ 정기 행사 안내 &nbsp;        
             <input type="text" name="date" id="date2" size="12" style="display:none"  />
-          
-            <a href="./boxoffice.html"><button class="btn btn-success" data-toggle="modal" data-target="#modal3" style="background-color: rgb(255, 174, 0);" >Movie</button> </a>
-            <a href="./nowplayingmovies.html"><button class="btn btn-success" data-toggle="modal" data-target="#modal3" style="background-color: rgb(12, 174, 0);" >Pre</button> </a>
- 
+  
+            
+       <!-- 박스오피스 -->
+       <button class="btn btn-success" data-toggle="modal" data-target="#modal4" style="background-color: rgb(255, 30, 0);" > 상영작 </button>
+       <a href="./nowplayingmovies.html"><button class="btn btn-success" data-toggle="modal" data-target="#modal3" style="background-color: rgb(12, 174, 0);" >영화소개</button> </a>
+
+         <!-- 상영작 바로가기-->
+
+         <div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal">박스오피스 현재상영작</h5>
+                <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>    
+
+              </div>
+              <div class="modal-body">
+                <form>   
+                <table> 
+                    <caption>※ 영화 통합전산망 실시간 데이터 <font size="&{today};"></font></caption>
+                    <script>
+                      var today = new Date();
+                      var week = new Array('일', '월', '화', '수', '목', '금', '토');
+                      var dayName = week[today.getDay()];
+                      var yesterdayName = week[today.getDay()-1];
+                      var yesterday = new Date();            
+                      var dd = yesterday.getDate()-1;
+                      var mm = yesterday.getMonth()+1; //January is 0!
+                      var yyyy = yesterday.getFullYear();
+                      var dd2 = today.getDate();
+                      var mm2 = today.getMonth()+1; //January is 0!
+                      var yyyy2 = today.getFullYear();
+                      if(dd<10) { dd='0'+dd } 
+                      if(mm<10) { mm='0'+mm } 
+                      if(dd2<10) { dd2='0'+dd2 } 
+                      if(mm2<10) { mm2='0'+mm2 } 
+                      yesterday = yyyy+"-"+mm+"-"+dd;
+                      tagetdt=yyyy+mm+dd;
+                      today = yyyy2+"-"+mm2+"-"+dd2;
+                      document.write("◎ TODAY : "+today+"("+dayName+")"+"</br><hr>");
+                      document.write("◎ BoxOffice 조회기준일자 : "+yesterday+"("+yesterdayName+")"+"</br><hr>");
+                      document.write("※ BoxOffice TOP 10 목록입니다."+"</br><hr>")
+                  </script>
+                    </th><tr><th>순위</th><th>영화</th><th>개봉일</th></tr>
+                    <td id="rank"></td>
+                    <td id="movieNm"></td>
+                    <td id="openDt"></td>                        
+                  </table>                 
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
             
            <!-- <button class="btn btn-success" data-toggle="modal" data-target="#modal4" style="background-color: rgb(255, 0, 0);" > 상영작</button>-->
             <hr>
