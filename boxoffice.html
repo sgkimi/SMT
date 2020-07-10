@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        .table {width: 100%;text-align:center;color:black; background-color: wheat;}
+         th, td { border: 1px solid #dadada; }
+        .table caption{caption-side: bottom; display: none; color:black;}
+        </style>
+          <meta charset="UTF-8">
+        <script>
+            var today = new Date();
+            var week = new Array('일', '월', '화', '수', '목', '금', '토');
+            var dayName = week[today.getDay()];
+            var yesterdayName = week[today.getDay()-1];
+            var yesterday = new Date();            
+            var dd = yesterday.getDate()-1;
+            var mm = yesterday.getMonth()+1; //January is 0!
+            var yyyy = yesterday.getFullYear();
+            var dd2 = today.getDate();
+            var mm2 = today.getMonth()+1; //January is 0!
+            var yyyy2 = today.getFullYear();
+            if(dd<10) { dd='0'+dd } 
+            if(mm<10) { mm='0'+mm } 
+            if(dd2<10) { dd2='0'+dd2 } 
+            if(mm2<10) { mm2='0'+mm2 } 
+            yesterday = yyyy+"-"+mm+"-"+dd;
+            tagetdt=yyyy+mm+dd;
+            today = yyyy2+"-"+mm2+"-"+dd2;
+            document.write("◎ TODAY : "+today+"("+dayName+")"+"</br><hr>");
+            document.write("◎ BoxOffice 조회기준일자 : "+yesterday+"("+yesterdayName+")"+"</br><hr>");
+            document.write("※ BoxOffice TOP 10 목록입니다."+"</br><hr>")
+            
+        </script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+        </script>        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $.ajax({
+                    dataType: "xml",
+                    method: "GET",
+                    url: "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml",
+                    data: { key:"efb5b74d0b2390b5a20d51060683ea37", targetDt: tagetdt },
+                    success: function (xml) {
+                        // Parse the xml file and get data
+                        $(xml).find("boxOfficeResult").each(function(){
+                           
+                            $(this).find("movieNm").each(function(i){
+                                if (i != 0)
+                                {
+                                     $("#movieNm").append("<br>");
+                                }
+                                $("#movieNm").append($(this).text());
+                            
+                                 
+                            });
+                            
+                            $(this).find("openDt").each(function(j){
+                                if (j != 0)
+                                { 
+                                    $("#openDt").append("<br>"); 
+                                }
+                                $("#openDt").append($(this).text());
+                            });
+                            $(this).find("rank").each(function(k){                        
+                                if (k != 0)
+                                { 
+                                    $("#rank").append("<br>"); 
+                                }
+                                $("#rank").append($(this).text());
+                            });
+                            $(this).find("audiAcc").each(function(l){    
+                                if (l != 0)
+                                { 
+                                    $("#audiAcc").append("<br>"); 
+                                }                          
+                                $("#audiAcc").append($(this).text());
+                            });
+
+                        });
+                    }
+                });
+            });
+        </script>
+        <title>dailyBoxOfficeList</title>
+    </head>
+ 
+    <body>
+        <!--<h2 id="dailyBoxOfficeList"></h2>-->
+        <table class = "table">
+            <caption>dailyBoxOfficeList TOP 10</caption>
+            </th><tr><th>순위</th><th>영화</th><th>개봉일</th><th>누적관객수</th></tr>
+            <td id="rank"></td>
+            <td id="movieNm"></td>
+            <td id="openDt"></td>
+            <td id="audiAcc"></td>     
+        </table>
+       
+    </body>
+</html>
